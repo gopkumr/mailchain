@@ -4,7 +4,7 @@
     {
       "constant": true,
       "inputs": [],
-      "name": "UserCount",
+      "name": "userCount",
       "outputs": [
         {
           "name": "",
@@ -16,39 +16,79 @@
       "type": "function"
     },
     {
-      "constant": true,
+      "anonymous": false,
       "inputs": [
         {
-          "name": "",
+          "indexed": false,
+          "name": "from",
           "type": "address"
-        }
-      ],
-      "name": "EmailMapping",
-      "outputs": [
+        },
         {
-          "name": "userName",
+          "indexed": false,
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "message",
           "type": "string"
         }
       ],
+      "name": "MessageSent",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_userName",
+          "type": "string"
+        }
+      ],
+      "name": "addUser",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
       "payable": false,
-      "stateMutability": "view",
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_userName",
+          "type": "string"
+        },
+        {
+          "name": "_message",
+          "type": "string"
+        }
+      ],
+      "name": "sendMessage",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b50610220806100206000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806315931724146100515780631bab179c1461007c575b600080fd5b34801561005d57600080fd5b50610066610138565b6040518082815260200191505060405180910390f35b34801561008857600080fd5b506100bd600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061013e565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156100fd5780820151818401526020810190506100e2565b50505050905090810190601f16801561012a5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60015481565b6000602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156101ea5780601f106101bf576101008083540402835291602001916101ea565b820191906000526020600020905b8154815290600101906020018083116101cd57829003601f168201915b50505050509050815600a165627a7a72305820c0b0cabcce712a224807b23cfda9b37a029c140b5e0edc5d31c4077bc8e27e190029",
-  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806315931724146100515780631bab179c1461007c575b600080fd5b34801561005d57600080fd5b50610066610138565b6040518082815260200191505060405180910390f35b34801561008857600080fd5b506100bd600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061013e565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156100fd5780820151818401526020810190506100e2565b50505050905090810190601f16801561012a5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60015481565b6000602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156101ea5780601f106101bf576101008083540402835291602001916101ea565b820191906000526020600020905b8154815290600101906020018083116101cd57829003601f168201915b50505050509050815600a165627a7a72305820c0b0cabcce712a224807b23cfda9b37a029c140b5e0edc5d31c4077bc8e27e190029",
-  "sourceMap": "27:307:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;27:307:0;;;;;;;",
-  "deployedSourceMap": "27:307:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;176:21;;8:9:-1;5:2;;;30:1;27;20:12;5:2;176:21:0;;;;;;;;;;;;;;;;;;;;;;;129:42;;8:9:-1;5:2;;;30:1;27;20:12;5:2;129:42:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;129:42:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;176:21;;;;:::o;129:42::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "pragma solidity ^0.4.2;\r\n\r\ncontract EmailServer{\r\n\r\nstruct User{\r\n    string userName;\r\n}\r\n\r\n//Adding a name to address mapping\r\nmapping(address=>User) public EmailMapping;\r\n\r\nuint public UserCount;\r\n\r\nfunction addUser(string userName, address addressId) private{\r\n    UserCount++;\r\n    EmailMapping[addressId]=User(userName);\r\n}\r\n\r\n}\r\n",
+  "bytecode": "0x608060405234801561001057600080fd5b5061043f806100206000396000f300608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806307973ccf1461005c57806318b8275a14610087578063467fba0f14610104575b600080fd5b34801561006857600080fd5b506100716101b3565b6040518082815260200191505060405180910390f35b34801561009357600080fd5b506100ee600480360381019080803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506101b9565b6040518082815260200191505060405180910390f35b34801561011057600080fd5b506101b1600480360381019080803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509192919290803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919291929050505061027b565b005b60025481565b6000600160025401600281905550336000836040518082805190602001908083835b60208310151561020057805182526020820191506020810190506020830392506101db565b6001836020036101000a038019825116818451168082178552505050505050905001915050908152602001604051809103902060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506002549050919050565b600080836040518082805190602001908083835b6020831015156102b4578051825260208201915060208101905060208303925061028f565b6001836020036101000a038019825116818451168082178552505050505050905001915050908152602001604051809103902060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690507fe2cf7446a11cbcd14cd99ea3a1bb77fb7653a64f4064d660140b5100d001e13c338284604051808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200180602001828103825283818151815260200191508051906020019080838360005b838110156103d25780820151818401526020810190506103b7565b50505050905090810190601f1680156103ff5780820380516001836020036101000a031916815260200191505b5094505050505060405180910390a15050505600a165627a7a72305820f37bacb054d5210a8909d042b3551fbf3174f2c725c4b02218630967465e4e030029",
+  "deployedBytecode": "0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806307973ccf1461005c57806318b8275a14610087578063467fba0f14610104575b600080fd5b34801561006857600080fd5b506100716101b3565b6040518082815260200191505060405180910390f35b34801561009357600080fd5b506100ee600480360381019080803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506101b9565b6040518082815260200191505060405180910390f35b34801561011057600080fd5b506101b1600480360381019080803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509192919290803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919291929050505061027b565b005b60025481565b6000600160025401600281905550336000836040518082805190602001908083835b60208310151561020057805182526020820191506020810190506020830392506101db565b6001836020036101000a038019825116818451168082178552505050505050905001915050908152602001604051809103902060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506002549050919050565b600080836040518082805190602001908083835b6020831015156102b4578051825260208201915060208101905060208303925061028f565b6001836020036101000a038019825116818451168082178552505050505050905001915050908152602001604051809103902060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690507fe2cf7446a11cbcd14cd99ea3a1bb77fb7653a64f4064d660140b5100d001e13c338284604051808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200180602001828103825283818151815260200191508051906020019080838360005b838110156103d25780820151818401526020810190506103b7565b50505050905090810190601f1680156103ff5780820380516001836020036101000a031916815260200191505b5094505050505060405180910390a15050505600a165627a7a72305820f37bacb054d5210a8909d042b3551fbf3174f2c725c4b02218630967465e4e030029",
+  "sourceMap": "27:602:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;27:602:0;;;;;;;",
+  "deployedSourceMap": "27:602:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;212:21;;8:9:-1;5:2;;;30:1;27;20:12;5:2;212:21:0;;;;;;;;;;;;;;;;;;;;;;;302:152;;8:9:-1;5:2;;;30:1;27;20:12;5:2;302:152:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;458:166;;8:9:-1;5:2;;;30:1;27;20:12;5:2;458:166:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;212:21;;;;:::o;302:152::-;352:4;385:1;375:9;;:11;365:9;:21;;;;417:10;393:12;406:9;393:23;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;51:19;36:153;;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;393:23:0;;;;;;;;;;;;;;;;;;;;;;:34;;;;;;;;;;;;;;;;;;441:9;;434:16;;302:152;;;:::o;458:166::-;526:17;544:12;557:9;544:23;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;51:19;36:153;;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;544:23:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;526:41;;577:43;589:10;600:9;611:8;577:43;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;577:43:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;458:166;;;:::o",
+  "source": "pragma solidity ^0.4.2;\r\n\r\ncontract EmailServer{\r\n\r\nstruct User {\r\n    string userName;\r\n}\r\n\r\n//Adding a name to address mapping\r\nmapping(string=>address) emailMapping;\r\nmapping(string=>User) userNameMapping;\r\n\r\nuint public userCount;\r\n\r\nevent MessageSent(address from, address to, string message);\r\n\r\nfunction addUser(string _userName) public returns(uint) {\r\n    userCount=userCount+1;\r\n    emailMapping[_userName]=msg.sender;\r\n    return userCount;\r\n}\r\n\r\nfunction sendMessage(string _userName, string _message) public {\r\n  address toAddress=emailMapping[_userName];\r\n  emit MessageSent(msg.sender,toAddress, _message);\r\n}\r\n\r\n}\r\n",
   "sourcePath": "D:\\Projects\\etherium\\mailchain\\contracts\\EmailServer.sol",
   "ast": {
     "absolutePath": "/D/Projects/etherium/mailchain/contracts/EmailServer.sol",
     "exportedSymbols": {
       "EmailServer": [
-        30
+        67
       ]
     },
-    "id": 31,
+    "id": 68,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -68,9 +108,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 30,
+        "id": 67,
         "linearizedBaseContracts": [
-          30
+          67
         ],
         "name": "EmailServer",
         "nodeType": "ContractDefinition",
@@ -85,7 +125,7 @@
                 "name": "userName",
                 "nodeType": "VariableDeclaration",
                 "scope": 4,
-                "src": "70:15:0",
+                "src": "71:15:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -96,7 +136,7 @@
                   "id": 2,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "70:6:0",
+                  "src": "71:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -108,48 +148,93 @@
             ],
             "name": "User",
             "nodeType": "StructDefinition",
-            "scope": 30,
-            "src": "52:37:0",
+            "scope": 67,
+            "src": "52:38:0",
             "visibility": "public"
           },
           {
             "constant": false,
             "id": 8,
-            "name": "EmailMapping",
+            "name": "emailMapping",
             "nodeType": "VariableDeclaration",
-            "scope": 30,
-            "src": "129:42:0",
+            "scope": 67,
+            "src": "130:37:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$4_storage_$",
-              "typeString": "mapping(address => struct EmailServer.User)"
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_address_$",
+              "typeString": "mapping(string => address)"
             },
             "typeName": {
               "id": 7,
               "keyType": {
                 "id": 5,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "138:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "130:24:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_address_$",
+                "typeString": "mapping(string => address)"
+              },
+              "valueType": {
+                "id": 6,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "137:7:0",
+                "src": "146:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 12,
+            "name": "userNameMapping",
+            "nodeType": "VariableDeclaration",
+            "scope": 67,
+            "src": "170:37:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_User_$4_storage_$",
+              "typeString": "mapping(string => struct EmailServer.User)"
+            },
+            "typeName": {
+              "id": 11,
+              "keyType": {
+                "id": 9,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "178:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
               },
               "nodeType": "Mapping",
-              "src": "129:22:0",
+              "src": "170:21:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$4_storage_$",
-                "typeString": "mapping(address => struct EmailServer.User)"
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_User_$4_storage_$",
+                "typeString": "mapping(string => struct EmailServer.User)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 6,
+                "id": 10,
                 "name": "User",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 4,
-                "src": "146:4:0",
+                "src": "186:4:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_User_$4_storage_ptr",
                   "typeString": "struct EmailServer.User"
@@ -157,15 +242,15 @@
               }
             },
             "value": null,
-            "visibility": "public"
+            "visibility": "internal"
           },
           {
             "constant": false,
-            "id": 10,
-            "name": "UserCount",
+            "id": 14,
+            "name": "userCount",
             "nodeType": "VariableDeclaration",
-            "scope": 30,
-            "src": "176:21:0",
+            "scope": 67,
+            "src": "212:21:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -173,10 +258,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 9,
+              "id": 13,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "176:4:0",
+              "src": "212:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -186,49 +271,194 @@
             "visibility": "public"
           },
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 22,
+            "name": "MessageSent",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 21,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16,
+                  "indexed": false,
+                  "name": "from",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22,
+                  "src": "256:12:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "256:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18,
+                  "indexed": false,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22,
+                  "src": "270:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 17,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "270:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 20,
+                  "indexed": false,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22,
+                  "src": "282:14:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 19,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "282:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "255:42:0"
+            },
+            "src": "238:60:0"
+          },
+          {
             "body": {
-              "id": 28,
+              "id": 44,
               "nodeType": "Block",
-              "src": "262:67:0",
+              "src": "358:96:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 18,
+                    "id": 33,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
-                    "nodeType": "UnaryOperation",
-                    "operator": "++",
-                    "prefix": false,
-                    "src": "269:11:0",
-                    "subExpression": {
+                    "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 17,
-                      "name": "UserCount",
+                      "id": 29,
+                      "name": "userCount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 10,
-                      "src": "269:9:0",
+                      "referencedDeclaration": 14,
+                      "src": "365:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 32,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 30,
+                        "name": "userCount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14,
+                        "src": "375:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "+",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 31,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "385:1:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "375:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "365:21:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 19,
+                  "id": 34,
                   "nodeType": "ExpressionStatement",
-                  "src": "269:11:0"
+                  "src": "365:21:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 26,
+                    "id": 40,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -237,29 +467,29 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 20,
-                        "name": "EmailMapping",
+                        "id": 35,
+                        "name": "emailMapping",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 8,
-                        "src": "287:12:0",
+                        "src": "393:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$4_storage_$",
-                          "typeString": "mapping(address => struct EmailServer.User storage ref)"
+                          "typeIdentifier": "t_mapping$_t_string_memory_$_t_address_$",
+                          "typeString": "mapping(string memory => address)"
                         }
                       },
-                      "id": 22,
+                      "id": 37,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 21,
-                        "name": "addressId",
+                        "id": 36,
+                        "name": "_userName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14,
-                        "src": "300:9:0",
+                        "referencedDeclaration": 24,
+                        "src": "406:9:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
                         }
                       },
                       "isConstant": false,
@@ -267,77 +497,76 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "287:23:0",
+                      "src": "393:23:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_User_$4_storage",
-                        "typeString": "struct EmailServer.User storage ref"
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
                       }
                     },
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "arguments": [
-                        {
-                          "argumentTypes": null,
-                          "id": 24,
-                          "name": "userName",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 12,
-                          "src": "316:8:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_string_memory_ptr",
-                            "typeString": "string memory"
-                          }
-                        }
-                      ],
                       "expression": {
-                        "argumentTypes": [
-                          {
-                            "typeIdentifier": "t_string_memory_ptr",
-                            "typeString": "string memory"
-                          }
-                        ],
-                        "id": 23,
-                        "name": "User",
+                        "argumentTypes": null,
+                        "id": 38,
+                        "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 4,
-                        "src": "311:4:0",
+                        "referencedDeclaration": 82,
+                        "src": "417:3:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_User_$4_storage_ptr_$",
-                          "typeString": "type(struct EmailServer.User storage pointer)"
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
                         }
                       },
-                      "id": 25,
+                      "id": 39,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
-                      "kind": "structConstructorCall",
                       "lValueRequested": false,
-                      "names": [],
-                      "nodeType": "FunctionCall",
-                      "src": "311:14:0",
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "417:10:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_User_$4_memory",
-                        "typeString": "struct EmailServer.User memory"
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
                       }
                     },
-                    "src": "287:38:0",
+                    "src": "393:34:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_User_$4_storage",
-                      "typeString": "struct EmailServer.User storage ref"
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
                     }
                   },
-                  "id": 27,
+                  "id": 41,
                   "nodeType": "ExpressionStatement",
-                  "src": "287:38:0"
+                  "src": "393:34:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 42,
+                    "name": "userCount",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 14,
+                    "src": "441:9:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 28,
+                  "id": 43,
+                  "nodeType": "Return",
+                  "src": "434:16:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 29,
+            "id": 45,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -345,16 +574,16 @@
             "name": "addUser",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 15,
+              "id": 25,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12,
-                  "name": "userName",
+                  "id": 24,
+                  "name": "_userName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 29,
-                  "src": "219:15:0",
+                  "scope": 45,
+                  "src": "319:16:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -362,10 +591,279 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 11,
+                    "id": 23,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "219:6:0",
+                    "src": "319:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "318:18:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 28,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 27,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 45,
+                  "src": "352:4:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "352:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "351:6:0"
+            },
+            "scope": 67,
+            "src": "302:152:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 65,
+              "nodeType": "Block",
+              "src": "521:103:0",
+              "statements": [
+                {
+                  "assignments": [
+                    53
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 53,
+                      "name": "toAddress",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 66,
+                      "src": "526:17:0",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 52,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "526:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 57,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 54,
+                      "name": "emailMapping",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8,
+                      "src": "544:12:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_string_memory_$_t_address_$",
+                        "typeString": "mapping(string memory => address)"
+                      }
+                    },
+                    "id": 56,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 55,
+                      "name": "_userName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 47,
+                      "src": "557:9:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "544:23:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "526:41:0"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 59,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 82,
+                          "src": "589:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 60,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "589:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 61,
+                        "name": "toAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 53,
+                        "src": "600:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 62,
+                        "name": "_message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 49,
+                        "src": "611:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 58,
+                      "name": "MessageSent",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 22,
+                      "src": "577:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (address,address,string memory)"
+                      }
+                    },
+                    "id": 63,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "577:43:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 64,
+                  "nodeType": "EmitStatement",
+                  "src": "572:48:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 66,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "sendMessage",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 50,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47,
+                  "name": "_userName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66,
+                  "src": "479:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 46,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "479:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -376,61 +874,61 @@
                 },
                 {
                   "constant": false,
-                  "id": 14,
-                  "name": "addressId",
+                  "id": 49,
+                  "name": "_message",
                   "nodeType": "VariableDeclaration",
-                  "scope": 29,
-                  "src": "236:17:0",
+                  "scope": 66,
+                  "src": "497:15:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
                   },
                   "typeName": {
-                    "id": 13,
-                    "name": "address",
+                    "id": 48,
+                    "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "236:7:0",
+                    "src": "497:6:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "218:36:0"
+              "src": "478:35:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 16,
+              "id": 51,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "262:0:0"
+              "src": "521:0:0"
             },
-            "scope": 30,
-            "src": "202:127:0",
+            "scope": 67,
+            "src": "458:166:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
-            "visibility": "private"
+            "visibility": "public"
           }
         ],
-        "scope": 31,
-        "src": "27:307:0"
+        "scope": 68,
+        "src": "27:602:0"
       }
     ],
-    "src": "0:336:0"
+    "src": "0:631:0"
   },
   "legacyAST": {
     "absolutePath": "/D/Projects/etherium/mailchain/contracts/EmailServer.sol",
     "exportedSymbols": {
       "EmailServer": [
-        30
+        67
       ]
     },
-    "id": 31,
+    "id": 68,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -450,9 +948,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 30,
+        "id": 67,
         "linearizedBaseContracts": [
-          30
+          67
         ],
         "name": "EmailServer",
         "nodeType": "ContractDefinition",
@@ -467,7 +965,7 @@
                 "name": "userName",
                 "nodeType": "VariableDeclaration",
                 "scope": 4,
-                "src": "70:15:0",
+                "src": "71:15:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -478,7 +976,7 @@
                   "id": 2,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "70:6:0",
+                  "src": "71:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -490,48 +988,93 @@
             ],
             "name": "User",
             "nodeType": "StructDefinition",
-            "scope": 30,
-            "src": "52:37:0",
+            "scope": 67,
+            "src": "52:38:0",
             "visibility": "public"
           },
           {
             "constant": false,
             "id": 8,
-            "name": "EmailMapping",
+            "name": "emailMapping",
             "nodeType": "VariableDeclaration",
-            "scope": 30,
-            "src": "129:42:0",
+            "scope": 67,
+            "src": "130:37:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$4_storage_$",
-              "typeString": "mapping(address => struct EmailServer.User)"
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_address_$",
+              "typeString": "mapping(string => address)"
             },
             "typeName": {
               "id": 7,
               "keyType": {
                 "id": 5,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "138:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "130:24:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_address_$",
+                "typeString": "mapping(string => address)"
+              },
+              "valueType": {
+                "id": 6,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "137:7:0",
+                "src": "146:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 12,
+            "name": "userNameMapping",
+            "nodeType": "VariableDeclaration",
+            "scope": 67,
+            "src": "170:37:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_User_$4_storage_$",
+              "typeString": "mapping(string => struct EmailServer.User)"
+            },
+            "typeName": {
+              "id": 11,
+              "keyType": {
+                "id": 9,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "178:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
               },
               "nodeType": "Mapping",
-              "src": "129:22:0",
+              "src": "170:21:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$4_storage_$",
-                "typeString": "mapping(address => struct EmailServer.User)"
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_User_$4_storage_$",
+                "typeString": "mapping(string => struct EmailServer.User)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 6,
+                "id": 10,
                 "name": "User",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 4,
-                "src": "146:4:0",
+                "src": "186:4:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_User_$4_storage_ptr",
                   "typeString": "struct EmailServer.User"
@@ -539,15 +1082,15 @@
               }
             },
             "value": null,
-            "visibility": "public"
+            "visibility": "internal"
           },
           {
             "constant": false,
-            "id": 10,
-            "name": "UserCount",
+            "id": 14,
+            "name": "userCount",
             "nodeType": "VariableDeclaration",
-            "scope": 30,
-            "src": "176:21:0",
+            "scope": 67,
+            "src": "212:21:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -555,10 +1098,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 9,
+              "id": 13,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "176:4:0",
+              "src": "212:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -568,49 +1111,194 @@
             "visibility": "public"
           },
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 22,
+            "name": "MessageSent",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 21,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16,
+                  "indexed": false,
+                  "name": "from",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22,
+                  "src": "256:12:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "256:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18,
+                  "indexed": false,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22,
+                  "src": "270:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 17,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "270:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 20,
+                  "indexed": false,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22,
+                  "src": "282:14:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 19,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "282:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "255:42:0"
+            },
+            "src": "238:60:0"
+          },
+          {
             "body": {
-              "id": 28,
+              "id": 44,
               "nodeType": "Block",
-              "src": "262:67:0",
+              "src": "358:96:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 18,
+                    "id": 33,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
-                    "nodeType": "UnaryOperation",
-                    "operator": "++",
-                    "prefix": false,
-                    "src": "269:11:0",
-                    "subExpression": {
+                    "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 17,
-                      "name": "UserCount",
+                      "id": 29,
+                      "name": "userCount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 10,
-                      "src": "269:9:0",
+                      "referencedDeclaration": 14,
+                      "src": "365:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 32,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 30,
+                        "name": "userCount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14,
+                        "src": "375:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "+",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 31,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "385:1:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "375:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "365:21:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 19,
+                  "id": 34,
                   "nodeType": "ExpressionStatement",
-                  "src": "269:11:0"
+                  "src": "365:21:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 26,
+                    "id": 40,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -619,29 +1307,29 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 20,
-                        "name": "EmailMapping",
+                        "id": 35,
+                        "name": "emailMapping",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 8,
-                        "src": "287:12:0",
+                        "src": "393:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$4_storage_$",
-                          "typeString": "mapping(address => struct EmailServer.User storage ref)"
+                          "typeIdentifier": "t_mapping$_t_string_memory_$_t_address_$",
+                          "typeString": "mapping(string memory => address)"
                         }
                       },
-                      "id": 22,
+                      "id": 37,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 21,
-                        "name": "addressId",
+                        "id": 36,
+                        "name": "_userName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14,
-                        "src": "300:9:0",
+                        "referencedDeclaration": 24,
+                        "src": "406:9:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
                         }
                       },
                       "isConstant": false,
@@ -649,77 +1337,76 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "287:23:0",
+                      "src": "393:23:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_User_$4_storage",
-                        "typeString": "struct EmailServer.User storage ref"
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
                       }
                     },
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "arguments": [
-                        {
-                          "argumentTypes": null,
-                          "id": 24,
-                          "name": "userName",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 12,
-                          "src": "316:8:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_string_memory_ptr",
-                            "typeString": "string memory"
-                          }
-                        }
-                      ],
                       "expression": {
-                        "argumentTypes": [
-                          {
-                            "typeIdentifier": "t_string_memory_ptr",
-                            "typeString": "string memory"
-                          }
-                        ],
-                        "id": 23,
-                        "name": "User",
+                        "argumentTypes": null,
+                        "id": 38,
+                        "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 4,
-                        "src": "311:4:0",
+                        "referencedDeclaration": 82,
+                        "src": "417:3:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_User_$4_storage_ptr_$",
-                          "typeString": "type(struct EmailServer.User storage pointer)"
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
                         }
                       },
-                      "id": 25,
+                      "id": 39,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
-                      "kind": "structConstructorCall",
                       "lValueRequested": false,
-                      "names": [],
-                      "nodeType": "FunctionCall",
-                      "src": "311:14:0",
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "417:10:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_User_$4_memory",
-                        "typeString": "struct EmailServer.User memory"
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
                       }
                     },
-                    "src": "287:38:0",
+                    "src": "393:34:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_User_$4_storage",
-                      "typeString": "struct EmailServer.User storage ref"
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
                     }
                   },
-                  "id": 27,
+                  "id": 41,
                   "nodeType": "ExpressionStatement",
-                  "src": "287:38:0"
+                  "src": "393:34:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 42,
+                    "name": "userCount",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 14,
+                    "src": "441:9:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 28,
+                  "id": 43,
+                  "nodeType": "Return",
+                  "src": "434:16:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 29,
+            "id": 45,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -727,16 +1414,16 @@
             "name": "addUser",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 15,
+              "id": 25,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12,
-                  "name": "userName",
+                  "id": 24,
+                  "name": "_userName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 29,
-                  "src": "219:15:0",
+                  "scope": 45,
+                  "src": "319:16:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -744,10 +1431,279 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 11,
+                    "id": 23,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "219:6:0",
+                    "src": "319:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "318:18:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 28,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 27,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 45,
+                  "src": "352:4:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "352:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "351:6:0"
+            },
+            "scope": 67,
+            "src": "302:152:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 65,
+              "nodeType": "Block",
+              "src": "521:103:0",
+              "statements": [
+                {
+                  "assignments": [
+                    53
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 53,
+                      "name": "toAddress",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 66,
+                      "src": "526:17:0",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 52,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "526:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 57,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 54,
+                      "name": "emailMapping",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8,
+                      "src": "544:12:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_string_memory_$_t_address_$",
+                        "typeString": "mapping(string memory => address)"
+                      }
+                    },
+                    "id": 56,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 55,
+                      "name": "_userName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 47,
+                      "src": "557:9:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "544:23:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "526:41:0"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 59,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 82,
+                          "src": "589:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 60,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "589:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 61,
+                        "name": "toAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 53,
+                        "src": "600:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 62,
+                        "name": "_message",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 49,
+                        "src": "611:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 58,
+                      "name": "MessageSent",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 22,
+                      "src": "577:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (address,address,string memory)"
+                      }
+                    },
+                    "id": 63,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "577:43:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 64,
+                  "nodeType": "EmitStatement",
+                  "src": "572:48:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 66,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "sendMessage",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 50,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47,
+                  "name": "_userName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66,
+                  "src": "479:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 46,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "479:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -758,52 +1714,52 @@
                 },
                 {
                   "constant": false,
-                  "id": 14,
-                  "name": "addressId",
+                  "id": 49,
+                  "name": "_message",
                   "nodeType": "VariableDeclaration",
-                  "scope": 29,
-                  "src": "236:17:0",
+                  "scope": 66,
+                  "src": "497:15:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
                   },
                   "typeName": {
-                    "id": 13,
-                    "name": "address",
+                    "id": 48,
+                    "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "236:7:0",
+                    "src": "497:6:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "218:36:0"
+              "src": "478:35:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 16,
+              "id": 51,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "262:0:0"
+              "src": "521:0:0"
             },
-            "scope": 30,
-            "src": "202:127:0",
+            "scope": 67,
+            "src": "458:166:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
-            "visibility": "private"
+            "visibility": "public"
           }
         ],
-        "scope": 31,
-        "src": "27:307:0"
+        "scope": 68,
+        "src": "27:602:0"
       }
     ],
-    "src": "0:336:0"
+    "src": "0:631:0"
   },
   "compiler": {
     "name": "solc",
@@ -813,10 +1769,10 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xf3657262ad4b5254322ab7faaccb2790107b0ace",
-      "transactionHash": "0x65ce05d5eb38ee147854aa5e75ae62f062fe62dc5a51b489f2c05f4712ae96b7"
+      "address": "0x504e3d647a1cfc1f96a5613e7a35e9eb21d4defc",
+      "transactionHash": "0xc82921ad108d742a67556bb999bf3ab9cc9c19dacdbd54d46469ead877c63ec0"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-31T11:05:38.866Z"
+  "updatedAt": "2018-11-22T12:17:22.067Z"
 }
