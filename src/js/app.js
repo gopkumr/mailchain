@@ -28,9 +28,9 @@ App = {
       App.contracts.EmailServer = TruffleContract(emailServer);
       // Connect provider to interact with contract
       App.contracts.EmailServer.setProvider(App.web3Provider);
-    });
 
-    return App.bindEvents();
+      App.bindEvents();
+    });
   },
 
   bindEvents: function() {
@@ -42,7 +42,15 @@ App = {
       App.account = account;
       $("#accountInfo").html("Your Account: " + account);
     }
-  });
+    });
+
+   App.contracts.EmailServer.deployed().then(function(instance){
+     instance.UserAdded({},{fromBlock:0, toBlock:'latest'}).watch(function(error,event){
+        alert('event recieved');
+     });
+   });
+
+  
   },
 
   registerUser: function() {
