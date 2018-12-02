@@ -12,7 +12,7 @@ mapping(string=>User) userNameMapping;
 
 uint public userCount;
 
-event MessageSent(address from, address to, string message);
+event MessageSent(address from, address indexed to, string message);
 event UserAdded(string userName);
 event UserAddFailed(string userName, string message);
 

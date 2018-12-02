@@ -36,6 +36,7 @@ App = {
   bindEvents: function() {
    $("#btnSubmit").removeAttr('disabled');
    $("#btnSubmit").click(App.registerUser);
+   $("#btnSend").click(App.sendMessage);
 
    web3.eth.getCoinbase(function(err, account) {
     if (err === null) {
@@ -46,10 +47,17 @@ App = {
 
    App.contracts.EmailServer.deployed().then(function(instance){
      instance.UserAdded({},{fromBlock:0, toBlock:'latest'}).watch(function(error,event){
-        alert('event recieved');
+        alert('User Added successfully!');
      });
    });
 
+   App.contracts.EmailServer.deployed().then(function(instance){
+    instance.MessageSent({},{fromBlock:0, toBlock:'latest', to:App.account}).watch(function(error,event){
+      if(event.args.to===App.account){
+       alert('msg recieved:' + JSON.stringify(event.args.message));
+      }
+    });
+  });
   
   },
 
@@ -64,6 +72,16 @@ App = {
    }).then(function(result){
       alert(JSON.stringify(result));
    });
+  },
+
+  sendMessage:function(){
+    var userName=$("#toUser").val();
+    var message=$("#message").val();
+
+    App.contracts.EmailServer.deployed().then(function(instance){
+       instance.sendMessage(userName,message);
+   });
+
   },
 
 };
