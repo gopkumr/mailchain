@@ -1,19 +1,60 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import $ from 'jquery/dist/jquery'
 import './Home.css';
 
 class Home extends Component {
+
+  componentDidMount(){
+
+    // Smooth scrolling using jQuery easing
+      $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+        if (window.location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && window.location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          if (target.length) {
+            $('html, body').animate({
+              scrollTop: (target.offset().top - 70)
+            }, 1000, "linear");
+            return false;
+          }
+        }
+      });
+    
+      // Scroll to top button appear
+      $(document).scroll(function() {
+        var scrollDistance = $(this).scrollTop();
+        if (scrollDistance > 100) {
+          $('.scroll-to-top').fadeIn();
+        } else {
+          $('.scroll-to-top').fadeOut();
+        }
+     });
+    
+      // Closes responsive menu when a scroll trigger link is clicked
+      $('.js-scroll-trigger').click(function() {
+        $('.navbar-collapse').collapse('hide');
+      });
+    
+      // Activate scrollspy to add active class to navbar items on scroll
+      $('body').scrollspy({
+        target: '#mainNav',
+        offset: 80
+      });
+  }
+
+
   render() {
     return (
       <div>
-    <header className="masthead bg-primary text-white text-center">
-      <div className="container">
-        <img className="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="" />
-        <h1 className="text-uppercase mb-0">Start Bootstrap</h1>
-        <hr className="star-light" />
-        <h2 className="font-weight-light mb-0">Web Developer - Graphic Artist - User Experience Designer</h2>
-      </div>
-    </header>
+        <header className="masthead bg-primary text-white text-center">
+          <div className="container">
+            <img className="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="" />
+            <h1 className="text-uppercase mb-0">Start Bootstrap</h1>
+            <hr className="star-light" />
+            <h2 className="font-weight-light mb-0">Web Developer - Graphic Artist - User Experience Designer</h2>
+          </div>
+        </header>
 
     <section className="portfolio" id="portfolio">
       <div className="container">
