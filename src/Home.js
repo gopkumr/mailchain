@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Login from './login/Login'
 import logo from './logo.svg';
 import $ from 'jquery/dist/jquery'
 import './Home.css';
@@ -15,7 +16,7 @@ class Home extends Component {
           if (target.length) {
             $('html, body').animate({
               scrollTop: (target.offset().top - 70)
-            }, 1000, "linear");
+            }, 500, "linear");
             return false;
           }
         }
@@ -49,81 +50,15 @@ class Home extends Component {
       <div>
         <header className="masthead bg-primary text-white text-center">
           <div className="container">
-            <img className="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="" />
-            <h1 className="text-uppercase mb-0">Start Bootstrap</h1>
-            <hr className="star-light" />
-            <h2 className="font-weight-light mb-0">Web Developer - Graphic Artist - User Experience Designer</h2>
+            <img className="img-fluid mb-5 d-block mx-auto" src="images/email.png" alt="" />
+            <h1 className="text-uppercase mb-0">Mail-Chain</h1>
+            <hr className="glyphicon glyphicon-envelope" />
+            <span className="glyphicon glyphicon-envelope"></span>
+            <h2 className="font-weight-light mb-0">Email Service - Peer-to-peer - Based on Etherium blockchain platform</h2>
           </div>
         </header>
 
-    <section className="portfolio" id="portfolio">
-      <div className="container">
-        <h2 className="text-center text-uppercase text-secondary mb-0">Portfolio</h2>
-        <hr className="star-dark mb-5" />
-        <div className="row">
-          <div className="col-md-6 col-lg-4">
-            <a className="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
-              <div className="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div className="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i className="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img className="img-fluid" src="img/portfolio/cabin.png" alt="" />
-            </a>
-          </div>
-          <div className="col-md-6 col-lg-4">
-           <a className="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
-              <div className="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div className="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i className="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img className="img-fluid" src="img/portfolio/cake.png" alt="" />
-            </a>
-          </div>
-          <div className="col-md-6 col-lg-4">
-            <a className="portfolio-item d-block mx-auto" href="#portfolio-modal-3">
-              <div className="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div className="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i className="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img className="img-fluid" src="img/portfolio/circus.png" alt="" />
-            </a>
-          </div>
-          <div className="col-md-6 col-lg-4">
-            <a className="portfolio-item d-block mx-auto" href="#portfolio-modal-4">
-              <div className="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div className="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i className="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img className="img-fluid" src="img/portfolio/game.png" alt="" />
-            </a>
-          </div>
-          <div className="col-md-6 col-lg-4">
-            <a className="portfolio-item d-block mx-auto" href="#portfolio-modal-5">
-              <div className="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div className="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i className="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img className="img-fluid" src="img/portfolio/safe.png" alt="" />
-            </a>
-          </div>
-          <div className="col-md-6 col-lg-4">
-            <a className="portfolio-item d-block mx-auto" href="#portfolio-modal-6">
-              <div className="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div className="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i className="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img className="img-fluid" src="img/portfolio/submarine.png" alt="" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+   <Login />
 
     <section className="bg-primary text-white mb-0" id="about">
       <div className="container">
