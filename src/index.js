@@ -10,8 +10,9 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 import Home from './Home';
 import Register from './register/Register'
 import Navigation from './Navigation';
-import Inbox from './mailbox/inbox'
+import LoginHome from './mailbox/loginHome';
 import * as serviceWorker from './serviceWorker';
+
 
 
 ReactDOM.render(
@@ -21,7 +22,7 @@ ReactDOM.render(
     <div> 
         <Route path="/" exact component={Home} />
         <Route path="/register" component={Register} />
-        <Route path="/inbox" component={Inbox} />
+        <Route path="/loginhome" component={LoginHome} />
     </div>
     </BrowserRouter>
 </div>

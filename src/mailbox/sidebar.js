@@ -5,10 +5,9 @@ import './sidebar.css'
 class Sidebar extends Component{
 
 componentDidMount(){
-  
-  $('#toggleBtn').on('click', function () {
-    $('#sidebar').toggleClass('active');
-});
+    $('#toggleBtn').on('click', function () {
+      $('#sidebar').toggleClass('active');
+  });
 }
 
     render(){
@@ -25,25 +24,25 @@ componentDidMount(){
 
               <ul class="list-unstyled components">
                 <li class="active">
-                  <a href="#">
+                  <a href="#" onClick={(e)=>this.props.onSelect("Inbox")}>
                     <i className="fas fa-home"></i>
                     Inbox
                  </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#"  onClick={(e)=>this.props.onSelect("Junk")}>
                     <i className="fas fa-briefcase"></i>
                     Junk
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#"  onClick={(e)=>this.props.onSelect("Deleted")}>
                     <i className="fas fa-briefcase"></i>
                     Deleted
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#"  onClick={(e)=>this.props.onSelect("Sent")}>
                     <i className="fas fa-briefcase"></i>
                     Sent
                   </a>
